@@ -4,18 +4,17 @@
 	var CounterService = (function () {
 		
 		function CounterService() {
+			this.counter = { value : 0 };
 		};
-		CounterService.prototype.count = function (object, property, from, to, duration, effect, step, finish) {
-			var target = {};
-			
+		CounterService.prototype.count = function (identificator, from, to, duration, effect, step, finish) {
 			// stop previous animation
-			$(object).stop(true, true);
-			object[property] = parseFloat(from || 0);
-			target[property] = parseFloat(to || 0);
+			this.counter[identificator] = { value : 0 };
+			$(this.counter[identificator]).stop(true, true);
+			this.counter[identificator].value = parseFloat(from || 0);
 			
-			if (object[property] == target[property]) return;
+			if (this.counter[identificator].value == parseFloat(to || 0)) return;
 			
-			$(object).animate(target, {
+			$(this.counter[identificator]).animate({ value: parseFloat(to || 0) }, {
 				duration: duration,
 				easing: effect,
 				step: step
@@ -33,6 +32,7 @@
 		function CounterDirective(counter, timeout) {
 			this.restrict = 'EAC';
 			this.scope = {
+				identificator : '=',
 				to:       '=',
 				value:    '=',
 				effect:   '=?',
@@ -65,7 +65,7 @@
 			};
 			
 			$scope.$watch('to', function () {
-				$counter.count($scope, 'value', $scope.value, $scope.to, $scope.duration, $scope.effect, $scope.step, $scope.finish);
+				$counter.count($scope.identificator, $scope.value, $scope.to, $scope.duration, $scope.effect, $scope.step, $scope.finish);
 			});
 		};
 		
