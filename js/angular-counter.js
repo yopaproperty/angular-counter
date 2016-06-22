@@ -50,7 +50,8 @@
 				};
 			
 			if (!angular.isDefined($scope.to))
-				throw new 'Angular Counter: attribute `to` is undefined';
+				//console.log($scope);
+				//throw new 'Angular Counter: attribute `to` is undefined';
 			
 			angular.forEach(defaults, function (value, key) {
 				if (!angular.isDefined($scope[key])) $scope[key] = defaults[key];
