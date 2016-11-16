@@ -1,8 +1,8 @@
 (function (angular) {
-	
+
 	// service
 	var CounterService = (function () {
-		
+
 		function CounterService() {
 			this.counter = { value : 0 };
 		};
@@ -11,9 +11,9 @@
 			this.counter[identificator] = { value : 0 };
 			$(this.counter[identificator]).stop(true, true);
 			this.counter[identificator].value = parseFloat(from || 0);
-			
+
 			if (this.counter[identificator].value == parseFloat(to || 0)) return;
-			
+
 			$(this.counter[identificator]).animate({ value: parseFloat(to || 0) }, {
 				duration: duration,
 				easing: effect,
@@ -22,17 +22,17 @@
 				if (angular.isFunction(finish)) finish();
 			});
 		};
-		
+
 		return CounterService;
 	})();
-	
+
 	// directive
 	var CounterDirective = (function () {
-		
+
 		function CounterDirective(counter, timeout) {
 			this.restrict = 'EAC';
 			this.scope = {
-				identificator : '=',
+				identificator : '@',
 				to:       '=',
 				value:    '=',
 				effect:   '=?',
@@ -48,15 +48,15 @@
 					effect:   'linear',
 					duration: 1000
 				};
-			
+
 			if (!angular.isDefined($scope.to))
 				//console.log($scope);
 				//throw new 'Angular Counter: attribute `to` is undefined';
-			
+
 			angular.forEach(defaults, function (value, key) {
 				if (!angular.isDefined($scope[key])) $scope[key] = defaults[key];
 			});
-			
+
 			$scope.step = function (value) {
 				$timeout(function () {
 					$scope.$apply(function () {
@@ -64,15 +64,15 @@
 					});
 				});
 			};
-			
+
 			$scope.$watch('to', function () {
 				$counter.count($scope.identificator, $scope.value, $scope.to, $scope.duration, $scope.effect, $scope.step, $scope.finish);
 			});
 		};
-		
+
 		return CounterDirective;
 	})();
-	
+
 	angular
 		.module('counter', [])
 		.service('$counter', function () {
@@ -81,5 +81,5 @@
 		.directive('counter', ['$counter', '$timeout', function ($counter, $timeout) {
 			return new CounterDirective($counter, $timeout);
 		}]);
-	
+
 })(window.angular);
