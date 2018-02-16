@@ -10,7 +10,7 @@ Check out the demo page at http://indrimuska.github.io/angular-counter.
 
 ## Dependencies
 
-* [jQuery](https://jquery.com/) >= 1.7.1
+* [jQuery](https://jquery.com/) >= 1.11.0
 * [jQuery Easing](http://gsgd.co.uk/sandbox/jquery/easing/) by gsgd, CDN [here](http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js)
 * [AngularJS](https://angularjs.org/)
 
@@ -27,7 +27,7 @@ Update your HTML file:
 ```html
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.*/angular.js"></script>
 <script src="./js/angular-counter.js"></script>
 ```
 
@@ -51,8 +51,6 @@ var app = angular.module('MyApp', ['counter']);
 <span ng-bind="ctrl.myValue"></span>
 ```
 **INFO**: Animation starts every time the attribute `to` changes.
-
-**Directive examples:** http://plnkr.co/edit/d1KPDa?p=preview
 
 ## Service
 
