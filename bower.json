@@ -4,7 +4,7 @@
   "authors": [
     "Indri Muska <indrimuska@gmail.com>"
   ],
-  "description": "An AngularJS directive to animate number increment/decrement.",
+  "description": "An AngularJS directive to animate number increment/decrement. Updated by izy-izzy",
   "main": [
     "./js/angular-counter.js"
   ],
